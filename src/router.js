@@ -3,9 +3,9 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './components/index.vue'
-import Test from './components/test.vue'
-
+import Index from './page/index.vue'
+import Test from './page/test.vue'
+import Api from './page/api.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -19,6 +19,11 @@ export default new Router({
             path:'/test',
             name:'test',
             component:Test
+        },
+        {
+            path:'/api',
+            name:'api',
+            component:Api
         }
     ]
 })

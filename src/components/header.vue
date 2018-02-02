@@ -1,11 +1,12 @@
 <template lang="pug">
-    div this is index!
-        router-link(to="/test") 去往test的按钮
+header
+    image(src="../assets/bg.jpeg")
+    div this is header
 </template>
 
 <script>
-    export default{
-
+    export default {
+        
     }
 </script>
 

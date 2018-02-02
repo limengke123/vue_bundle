@@ -47,7 +47,7 @@ const config = webpackMerge(baseConfig,{
         historyApiFallback:true,
         proxy:{
             '/api': {
-                target: ' https://cnodejs.org/api/v1',
+                target: 'https://cnodejs.org/api/v1',
                 //pathRewrite: {'^/api' : '/campaign_huggies/t3store_freeuse/admin'},
                 changeOrigin: true
             }
