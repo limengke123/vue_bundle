@@ -8,8 +8,15 @@ const webpackMerge = require('webpack-merge')
 const baseConfig = require('./webpack.base.conf')
 
 const config = webpackMerge(baseConfig,{
+    output:{
+        publicPath:"/"
+    },
     module:{
         rules:[
+            {
+                test : /\.vue$/,
+                loader:'vue-loader'
+            },
             {
                 test:/\.styl/,
                 use:[
@@ -29,11 +36,22 @@ const config = webpackMerge(baseConfig,{
     devtool:'#cheap-module-eval-source-map',
     devServer:{
         port:8000,
-        host:'0.0.0.0',
+        host:'127.0.0.1',
         overlay:{
             errors:true
         },
-        hot:true
+        hot:true,
+        open:true,
+        progress:true,
+        // openPage:'public/',
+        historyApiFallback:true,
+        proxy:{
+            '/api': {
+                target: ' https://cnodejs.org/api/v1',
+                //pathRewrite: {'^/api' : '/campaign_huggies/t3store_freeuse/admin'},
+                changeOrigin: true
+            }
+        }
     },
     plugins:[
         new webpack.HotModuleReplacementPlugin(),

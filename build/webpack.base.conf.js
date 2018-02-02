@@ -8,7 +8,7 @@ module.exports = {
         app: join(__dirname, '../src/main.js')
     },
     output: {
-        filename: "[name].js",
+        filename: "js/[name].js",
         path: join(__dirname, '../dist'),
         publicPath: "/public/"
     },
@@ -17,10 +17,6 @@ module.exports = {
     },
     module: {
         rules :[
-            {
-                test : /\.vue$/,
-                loader:'vue-loader'
-            },
             {
                 test : /\.js$/,
                 loader:'babel-loader',
@@ -45,6 +41,12 @@ module.exports = {
         ]
     },
     plugins:[
-        new htmlWebpackPlugin()
+        new htmlWebpackPlugin({
+            minify:{
+                removeComments:true,
+                collapseWhitespace:true,
+                removeAttributeQuotes:true
+            }
+        })
     ]
 }

@@ -21,6 +21,7 @@ rm(path.join(__dirname,'../dist'),err=>{
             modules:false,
             children:false,
             chunks:false,
+            progress:true,
             chunkModules:false
         }) + '\n\n')
         if(stats.hasErrors()){

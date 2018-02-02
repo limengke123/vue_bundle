@@ -1,13 +1,11 @@
 <template lang="pug">
-    router-view
+    div this is index!
+        router-link(to="/test") 去往test的按钮
 </template>
 
 <script>
-    import test from './components/test.vue'
     export default{
-        components:{
-            test
-        }
+
     }
 </script>
 
