@@ -49,7 +49,8 @@ const config = webpackMerge(baseConfig,{
             '/api': {
                 target: 'https://cnodejs.org/api/v1',
                 //pathRewrite: {'^/api' : '/campaign_huggies/t3store_freeuse/admin'},
-                changeOrigin: true
+                changeOrigin: true,
+                secure:true
             }
         }
     },
