@@ -5,6 +5,11 @@
         button(@click="httpTest") http
         div
             span {{target.innerText}}
+        ul
+            li(v-for="topic in topicList")
+                span {{topic.author.loginname}}
+                <br />
+                span {{topic.title}}
 </template>
 
 <script>
@@ -12,7 +17,8 @@
     export default{
         data(){
             return {
-                target:""
+                target:"",
+                topicList:[]
             }
         },
         methods:{
@@ -30,6 +36,11 @@
                 }).GET()
                     .then(resp => {
                         console.log(resp)
+                       if(resp.success === true){
+                            this.topicList = resp.data
+                       } else {
+                            console.log(resp.data)
+                       }
                     })
             }
         }

@@ -14,12 +14,12 @@ class httpRequest {
         return new Promise((resolve,reject) => {
             axios.get(this.__stringifyParam(),config)
                 .then(resp => {
-                    if(resp.success === true){
+                    if(resp.status === 200){
                         resolve(resp.data)
                     } else {
                         reject({
                             success:false,
-                            errors:resp.errors
+                            error:"网络连接出现错误"
                         })
                     }
                 })
@@ -47,12 +47,19 @@ class httpRequest {
         return new Promise((resolve,reject) => {
             axios.post(this.url,this.params,config)
                 .then(resp => {
-                    if(resp.success === true){
-                        resolve(resp.data)
+                    if(resp.status === 200){
+                        if(resp.data.success === true){
+                            resolve(resp.data.data)
+                        } else {
+                            reject({
+                                success:false,
+                                error:resp.data.data
+                            })
+                        }
                     } else {
                         reject({
                             success:false,
-                            errors:resp.errors
+                            error:"网络连接错误"
                         })
                     }
                 })

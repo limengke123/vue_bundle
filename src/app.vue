@@ -3,10 +3,7 @@
 </template>
 
 <script>
+    import './index.styl'
     export default{
     }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>
