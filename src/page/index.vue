@@ -2,11 +2,13 @@
     div
         header-component(:headerList="headerList")
         body-component
+        footer-component
 </template>
 
 <script>
     import Headercomponent from '../components/header.vue'
     import Bodycomponet from '../components/homeBody.vue'
+    import Footercomponet from '../components/footer.vue'
     export default{
         data(){
             return {
@@ -38,7 +40,8 @@
         },
         components:{
             ["header-component"]:Headercomponent,
-            ["body-component"]:Bodycomponet
+            ["body-component"]:Bodycomponet,
+            ['footer-component']:Footercomponet
         }
     }
 </script>

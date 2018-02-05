@@ -2,8 +2,13 @@
     main
         .wrapper
             ul.tabs
-              li(v-for="(tab,index) in tabs" v-bind:key="index" v-bind:class="[tab.selected === true ? 'isSelected' : '' , 'tab']" v-bind:data-href="tab.href") {{tab.title}}
-            ul.topicList()
+              li(v-for="(tab,index) in tabs"
+                v-bind:key="index"
+                v-on:click="changeTab"
+                v-bind:class="[tab.selected === true ? 'isSelected' : '' , 'tab']"
+                v-bind:data-href="tab.href") {{tab.title}}
+            .no-item(v-if="topicList.length === 0") there is no item anymore!!!
+            ul.topicList
                 item(v-for="(topic,index) in topicList" v-bind:key="index" v-bind:topic="topic")
 </template>
 
@@ -17,47 +22,62 @@
                 tabs:[
                     {
                         title:"全部",
-                        href:"/all",
+                        href:"",
                         selected:true
                     },{
                         title:"精华",
-                        href:"/all",
+                        href:"good",
                         selected:false
                     },{
                         title:"分享",
-                        href:"/all",
+                        href:"share",
                         selected:false
                     },{
                         title:"问答",
-                        href:"/all",
+                        href:"ask",
                         selected:false
                     },{
                         title:"招聘",
-                        href:"/all",
+                        href:"job",
                         selected:false
-                    },{
-                        title:"客户端测试",
-                        href:"/all",
-                        selected:false
-                    },
+                    }
                 ],
             }
         },
+        methods:{
+            getTopicsByTab(tab){
+                let params = {
+                    page:1,
+                    //tab:'ask',
+                    limit:'20',
+                    mdrender:true
+                }
+                if(tab) params = Object.assign({},params,{tab})
+                new HttpRequest('/api/topics',params).GET()
+                    .then(resp => {
+                        console.log(resp)
+                        if(resp.success === true){
+                            this.topicList = resp.data
+                        } else {
+                            console.log(resp.data)
+                        }
+                    })
+            },
+            changeTab(e){
+                const targetEl = e.target
+                const tab = targetEl.getAttribute('data-href')
+                this.topicList = []
+                this.changeSelected(tab)
+                this.getTopicsByTab(tab)
+            },
+            changeSelected(tab){
+                this.tabs.map(val => {console.log(val);val.selected = false})
+                console.log(this.tabs.find(el => el.href === tab))
+                this.tabs.find(el => el.href === tab)["selected"] = true
+            }
+        },
         mounted:function () {
-            new HttpRequest('/api/topics',{
-                page:1,
-                //tab:'ask',
-                limit:'20',
-                mdrender:true
-            }).GET()
-                .then(resp => {
-                    console.log(resp)
-                    if(resp.success === true){
-                        this.topicList = resp.data
-                    } else {
-                        console.log(resp.data)
-                    }
-                })
+            this.getTopicsByTab()
         },
         components:{
             item
@@ -85,10 +105,11 @@
                 .tab
                     color $tabColor
                     font-size $normalFontSize
-                    padding 2px 4px
+                    padding 2px 7px
                     border-radius 3px
-                    margin 0 5px 0 20px
+                    margin 0 5px 0 15px
                     cursor pointer
+                    flex-shrink 0
                     &:hover
                         color $tabHover
                 .isSelected
@@ -96,6 +117,10 @@
                     color #fff
                     &:hover
                         color #fff
+            .no-item
+                font-size 24px
+                text-align center
+                padding 60px 0
             .topicList
                 margin-bottom 10px
 </style>

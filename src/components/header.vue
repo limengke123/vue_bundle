@@ -41,6 +41,7 @@
                     background url('../assets/logo.png')
                     background-size contain
                     margin-right 25px
+                    flex-shrink 0
             .right
                 display flex
                 justify-content space-between
