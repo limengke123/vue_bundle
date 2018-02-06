@@ -1,7 +1,7 @@
 <template lang="pug">
     main
         .wrapper
-            .fetching(v-if="isFetching") i m tring fetching
+            spinner(v-if="isFetching")
             div(v-else)
                 .header
                     .title {{topic.title}}
@@ -16,6 +16,7 @@
 <script>
     import HttpRequest from '../util/http'
     import {topicType} from '../util/map'
+    import spinner from './spinner.vue'
     import moment from 'moment'
     export default {
         data(){
@@ -43,6 +44,9 @@
             day:function () {
                 return moment(this.topic.create_at).startOf('day').fromNow()
             }
+        },
+        components:{
+            spinner
         }
     }
 </script>
@@ -60,6 +64,8 @@
             align-items center
             flex-direction column
             min-height 300px
+            margin 20px 0
+            border-radius 5px
             .header
                 padding 10px
                 border-bottom 1px solid $borderColor
@@ -83,6 +89,7 @@
                 display flex
                 justify-content center
                 padding 0 20px 20px 20px
+                min-height 500px
 </style>
 
 <style lang="stylus">

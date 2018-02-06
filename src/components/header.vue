@@ -3,7 +3,7 @@
         .wrap
             .left
                 router-link.logo(to="/")
-                div This is header
+                div Cnode
             ul.right
                 li(v-for="item in headerList")
                     span(:data-href="item.href") {{item.title}}

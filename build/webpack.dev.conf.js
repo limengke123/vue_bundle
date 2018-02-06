@@ -41,7 +41,7 @@ const config = webpackMerge(baseConfig,{
             errors:true
         },
         hot:true,
-        open:true,
+        open:false,
         progress:true,
         // openPage:'public/',
         historyApiFallback:true,

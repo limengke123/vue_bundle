@@ -1,11 +1,20 @@
 <template lang="pug">
     footer
         .wrapper
-            div this is footer
+            img.logo(:src="logo")
+            div tommorrow is a new day !
 </template>
 
 <script>
-    export default {}
+    import logo from '../assets/logo.png'
+    console.log(logo)
+    export default {
+        data(){
+            return {
+                logo
+            }
+        }
+    }
 </script>
 
 <style lang="stylus" scoped>
@@ -15,8 +24,10 @@
         justify-content center
         .wrapper
             width $wrapWidth
-            height w = 60px
+            height w = 50px
             display flex
             justify-content center
             align-items center
+            .logo
+                width 40px
 </style>
