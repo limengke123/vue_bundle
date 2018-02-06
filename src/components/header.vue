@@ -2,7 +2,7 @@
     header
         .wrap
             .left
-                .logo
+                router-link.logo(to="/")
                 div This is header
             ul.right
                 li(v-for="item in headerList")
@@ -10,11 +10,11 @@
 </template>
 
 <script>
+    import {headerList} from '../config/index'
     export default {
-        props: {
-            headerList: {
-                type: Array,
-                required: true
+        data(){
+            return {
+                headerList
             }
         }
     }

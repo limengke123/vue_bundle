@@ -10,38 +10,20 @@
             .no-item(v-if="topicList.length === 0") there is no item anymore!!!
             ul.topicList
                 item(v-for="(topic,index) in topicList" v-bind:key="index" v-bind:topic="topic")
+            spinner(v-if="isFetching")
 </template>
 
 <script>
     import HttpRequest from '../util/http'
     import item from  './topicListItem.vue'
+    import spinner from '../components/spinner.vue'
+    import {tabs} from '../config/index'
     export default {
         data(){
             return {
                 topicList:[],
-                tabs:[
-                    {
-                        title:"全部",
-                        href:"",
-                        selected:true
-                    },{
-                        title:"精华",
-                        href:"good",
-                        selected:false
-                    },{
-                        title:"分享",
-                        href:"share",
-                        selected:false
-                    },{
-                        title:"问答",
-                        href:"ask",
-                        selected:false
-                    },{
-                        title:"招聘",
-                        href:"job",
-                        selected:false
-                    }
-                ],
+                tabs,
+                isFetching:true
             }
         },
         methods:{
@@ -55,24 +37,23 @@
                 if(tab) params = Object.assign({},params,{tab})
                 new HttpRequest('/api/topics',params).GET()
                     .then(resp => {
-                        console.log(resp)
                         if(resp.success === true){
                             this.topicList = resp.data
                         } else {
-                            console.log(resp.data)
+                            //console.log(resp.data)
                         }
+                        this.isFetching = false
                     })
             },
             changeTab(e){
                 const targetEl = e.target
                 const tab = targetEl.getAttribute('data-href')
-                this.topicList = []
+                this.isFetching = true
                 this.changeSelected(tab)
                 this.getTopicsByTab(tab)
             },
             changeSelected(tab){
                 this.tabs.map(val => {console.log(val);val.selected = false})
-                console.log(this.tabs.find(el => el.href === tab))
                 this.tabs.find(el => el.href === tab)["selected"] = true
             }
         },
@@ -80,7 +61,8 @@
             this.getTopicsByTab()
         },
         components:{
-            item
+            item,
+            spinner
         }
     }
 </script>
