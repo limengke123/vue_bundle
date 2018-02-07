@@ -1,5 +1,5 @@
 <template lang="pug">
-    div
+    div.whole-wrapper
         header-component
         topic-body
         footer-component
@@ -19,5 +19,8 @@
 </script>
 
 <style lang="stylus" scoped>
-
+.whole-wrapper
+    display flex
+    flex-direction column
+    height 100%
 </style>

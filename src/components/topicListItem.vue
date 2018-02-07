@@ -13,7 +13,8 @@
 
 <script>
     import {topicType as topicTypeMap} from '../util/map'
-    import moment from 'moment'
+    //import moment from 'moment'
+    import {timeFormat} from '../util/index'
     export default {
         data(){
             return {
@@ -39,7 +40,7 @@
                 return `/topic/${this.topic.id}`
             },
             time:function () {
-                return moment(this.topic.last_reply_at).startOf('day').fromNow()
+                return timeFormat(this.topic.last_reply_at)
             }
         },
         methods:{

@@ -1,8 +1,8 @@
 <template lang="pug">
     main
         .wrapper
-            spinner(v-if="isFetching")
-            div(v-else)
+            spinner(v-show="isFetching")
+            div()
                 .header
                     .title {{topic.title}}
                     .info
@@ -17,7 +17,8 @@
     import HttpRequest from '../util/http'
     import {topicType} from '../util/map'
     import spinner from './spinner.vue'
-    import moment from 'moment'
+    import {timeFormat} from '../util/index'
+    //import moment from 'moment'
     export default {
         data(){
             return {
@@ -42,7 +43,10 @@
                 return topicType[this.topic.tab]
             },
             day:function () {
-                return moment(this.topic.create_at).startOf('day').fromNow()
+                console.log(timeFormat)
+                return timeFormat(this.topic.create_at)
+                //return 111
+                //return moment(this.topic.create_at).startOf('day').fromNow()
             }
         },
         components:{
@@ -56,6 +60,8 @@
     main
         display flex
         justify-content center
+        flex-shrink 1
+        flex-grow 1
         background-color $bodyBgColor
         .wrapper
             width $wrapWidth

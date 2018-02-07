@@ -7,10 +7,10 @@
                 v-on:click="changeTab"
                 v-bind:class="[tab.selected === true ? 'isSelected' : '' , 'tab']"
                 v-bind:data-href="tab.href") {{tab.title}}
-            .no-item(v-if="topicList.length === 0") there is no item anymore!!!
+            //.no-item(v-if="topicList.length === 0") there is no item anymore!!!
             ul.topicList
                 item(v-for="(topic,index) in topicList" v-bind:key="index" v-bind:topic="topic")
-            spinner(v-if="isFetching")
+            spinner(v-show="isFetching")
 </template>
 
 <script>

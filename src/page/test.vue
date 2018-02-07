@@ -1,7 +1,7 @@
 <template lang="pug">
     div
         router-link(to="/") 去往首页
-        spinner
+        button(@click="message") 测试一下
 
 </template>
 
@@ -11,6 +11,16 @@
     export default{
         components:{
             spinner
+        },
+        methods:{
+            message:function(){
+                this.$message({
+                    message:"文字",
+                    type:"success",
+                    showClose:true,
+                    duration:300000
+                })
+            }
         }
     }
 </script>

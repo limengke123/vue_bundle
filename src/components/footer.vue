@@ -22,6 +22,7 @@
     footer
         display flex
         justify-content center
+        flex-shrink 0
         .wrapper
             width $wrapWidth
             height w = 50px

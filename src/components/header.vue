@@ -6,7 +6,7 @@
                 div Cnode
             ul.right
                 li(v-for="item in headerList")
-                    span(:data-href="item.href") {{item.title}}
+                    span(:data-href="item.href" v-on:click="tabClick(item.title)") {{item.title}}
 </template>
 
 <script>
@@ -15,6 +15,15 @@
         data(){
             return {
                 headerList
+            }
+        },
+        methods:{
+            tabClick(title){
+                const typeArr = ['info','warning','success','error']
+                this.$message({
+                    type : typeArr[~~(Math.random() * typeArr.length + 1)],
+                    message:`${title} 不能点噢`
+                })
             }
         }
     }

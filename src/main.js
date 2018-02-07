@@ -5,7 +5,8 @@ import Vue from 'vue'
 import App from './app.vue'
 
 import router from './router'
-
+import selfLib from  './self-lib/index'
+Vue.use(selfLib)
 
 const root = document.createElement('div')
 document.body.appendChild(root)
