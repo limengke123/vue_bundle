@@ -1,7 +1,7 @@
 # vue_bundle
 #### 手动搭一个环境，熟练一下webpack配置
   * 开发环境
-  用的是 webpack-dev-server去搞一个开发服务器，这玩意儿开发用真的巨爽，热替换、内存编译打包，代理转发
+用的是 webpack-dev-server去搞一个开发服务器，这玩意儿开发用真的巨爽，热替换、内存编译打包，代理转发
 ```apple js
     npm run dev
 ```
