@@ -69,7 +69,7 @@
             display flex
             align-items center
             flex-direction column
-            min-height 300px
+            min-height 750px
             margin 20px 0
             border-radius 5px
             .header

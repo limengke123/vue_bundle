@@ -77,6 +77,7 @@
             width $wrapWidth
             margin-top 10px
             border-radius 50px
+            min-height 750px
             .tabs
                 display flex
                 align-items center
